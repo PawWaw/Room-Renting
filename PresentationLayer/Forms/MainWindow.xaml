@@ -1,0 +1,129 @@
+﻿<Window x:Name="Room_Renter" x:Class="Room_Renting.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Room_Renting"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d" Height="600" Width="1080" Foreground="#F5FBEF" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" Icon="/Room Renting;component/home(2).ico" Title="Room Renter">
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="TabButton">
+            <Setter Property="Background" Value="#0E3B43" />
+            <Setter Property="Foreground" Value="#F5FBEF"/>
+            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="#F5FBEF" Cursor="Hand" >
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F5FBEF"/>
+                    <Setter Property="Foreground" Value="#2F9C95"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Storyboard x:Key="OpenMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="70"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CloseMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="60"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid Background="#F5FBEF">
+        <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="510" Width="1009"/>
+        <Grid Height="60" VerticalAlignment="Top" Background="#0E3B43">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="2" ShadowDepth="1" Color="#F5FBEF"/>
+            </Grid.Effect>
+            <StackPanel Orientation="Horizontal" Visibility="Hidden" HorizontalAlignment="Right" Grid.Column="1">
+                <TextBlock Text="Name Surname" VerticalAlignment="Center" FontSize="16"/>
+                <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10">
+                    <StackPanel Width="150" Background="#2F9C95">
+                        <Button Content="My Account" Foreground="#F5FBEF" Cursor="Hand"/>
+                        <Button Content="Help" Foreground="#F5FBEF" Cursor="Hand"/>
+                        <Separator Background="#F5FBEF"/>
+                        <Button Content="Logout" Foreground="#F5FBEF" Cursor="Hand"/>
+                    </StackPanel>
+                </materialDesign:PopupBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Visibility="Visible" HorizontalAlignment="Right" Grid.Column="1">
+                <Button Style="{StaticResource TabButton}" x:Name="ButtonSignIn" Height="40" Width="40" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#0E3B43" BorderBrush="{x:Null}" Foreground="#F5FBEF" Cursor="Hand" Click="ButtonSignIn_Click">
+                    <materialDesign:PackIcon Kind="Login" Width="30" Height="30"/>
+                </Button>
+                <Button Style="{StaticResource TabButton}" x:Name="ButtonSignUp" Height="40" Width="40" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#0E3B43" BorderBrush="{x:Null}" Foreground="#F5FBEF" Cursor="Hand" Click="ButtonSignUp_Click">
+                    <materialDesign:PackIcon Kind="Register" Width="30" Height="30"/>
+                </Button>
+                <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10">
+                    <StackPanel Width="150" Background="#2F9C95">
+                        <Button x:Name="HelpButton" Content="Help" Foreground="#F5FBEF" Cursor="Hand" Click="HelpButton_Click"/>
+                        <Button x:Name="AboutButton" Content="About" Foreground="#F5FBEF" Cursor="Hand" Click="AboutButton_Click"/>
+                        <Button x:Name="QuitButton" Content="Quit" Foreground="#F5FBEF" Cursor="Hand" Click="QuitButton_Click"/>
+                    </StackPanel>
+                </materialDesign:PopupBox>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="GridMenu" Width="60" HorizontalAlignment="Left" Background="#F5FBEF">
+            <StackPanel>
+                <Grid Height="60" Background="#2F9C95" RenderTransformOrigin="0.5,0.5">
+                    <Button Style="{StaticResource TabButton}" x:Name="ButtonOpenMenu" Height="60" Width="60" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#2F9C95" Foreground="#0E3B43" Click="ButtonOpenMenu_Click">
+                        <materialDesign:PackIcon Kind="Menu" Width="30" Height="30"/>
+                    </Button>
+                    <Button Style="{StaticResource TabButton}" x:Name="ButtonCloseMenu" Visibility="Collapsed" Height="60" Width="60" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#2F9C95" Foreground="#0E3B43" Click="ButtonCloseMenu_Click">
+                        <materialDesign:PackIcon Kind="Undo" Width="30" Height="30"/>
+                    </Button>
+                </Grid>
+                <ListView x:Name="ListViewMenu" Foreground="#2F9C95" Background="#F5FBEF" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0">
+                    <ListViewItem x:Name="ItemHome" Height="60" Background="#F5FBEF" Cursor="Hand">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Home" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="Home" VerticalAlignment="Center" Margin="10 10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemCreate" Height="60" Background="#F5FBEF" Cursor="Hand">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Pencil" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="Find room" VerticalAlignment="Center" Margin="10 10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemCalendar" Height="60" Background="#F5FBEF" Cursor="Hand">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Calendar" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="My calendar" VerticalAlignment="Center"  Margin="10 10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemHistory" Height="60" Background="#F5FBEF" Cursor="Hand">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="History" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="Reservation history" VerticalAlignment="Center"  Margin="10 10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemReviews" Height="60" Background="#F5FBEF" Cursor="Hand">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Vote" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="Reviews" VerticalAlignment="Center"  Margin="10 10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
