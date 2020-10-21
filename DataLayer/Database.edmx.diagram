@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3d7a46e93b504523815c1c7acd7d7849" Name="Diagram1">
+      <Diagram DiagramId="55edf7c37fd84dc38aee8d3e891ae938" Name="Diagram1">
         <EntityTypeShape EntityType="RoomRentModel.Addresses" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="RoomRentModel.PersonalData" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="RoomRentModel.Rents" Width="1.5" PointX="0.5" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="RoomRentModel.Reviews" Width="1.5" PointX="7.625" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="RoomRentModel.UserAddresses" Width="1.5" PointX="5.25" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="RoomRentModel.Users" Width="1.5" PointX="2.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomRentModel.PersonalData" Width="1.5" PointX="0.75" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomRentModel.Rents" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomRentModel.Reviews" Width="1.5" PointX="7.5" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomRentModel.UserAddresses" Width="1.5" PointX="5.25" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomRentModel.Users" Width="1.5" PointX="3" PointY="0.625" IsExpanded="true" />
         <AssociationConnector Association="RoomRentModel.FK_Rents_Addresses" ManuallyRouted="false" />
         <AssociationConnector Association="RoomRentModel.FK_Reviews_Addresses" ManuallyRouted="false" />
         <AssociationConnector Association="RoomRentModel.FK_UserAddresses_Addresses" ManuallyRouted="false" />

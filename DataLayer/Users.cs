@@ -22,8 +22,8 @@ namespace DataLayer
             this.UserAddresses = new HashSet<UserAddresses>();
         }
     
-        public int id { get; set; }
-        public int personal_id { get; set; }
+        public long id { get; set; }
+        public long personal_id { get; set; }
         public string username { get; set; }
         public string password { get; set; }
         public string email_addr { get; set; }
@@ -35,6 +35,7 @@ namespace DataLayer
         public Nullable<System.DateTime> modify_date { get; set; }
         public Nullable<System.DateTime> disable_date { get; set; }
         public Nullable<short> rating { get; set; }
+        public string salt { get; set; }
     
         public virtual PersonalData PersonalData { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

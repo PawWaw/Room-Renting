@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using BizzLayer;
+using MaterialDesignThemes.Wpf;
 using Room_Renting.Forms;
 
 namespace Room_Renting
@@ -73,6 +74,33 @@ namespace Room_Renting
         {
             Register register = new Register();
             register.ShowDialog();
+        }
+
+        private void ItemCalendar_Selected(object sender, RoutedEventArgs e)
+        {
+            Forms.Calendar calendar = new Forms.Calendar();
+            calendar.ShowDialog();
+        }
+
+        private void ItemCreate_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ItemHome_Selected(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void ItemHistory_Selected(object sender, RoutedEventArgs e)
+        {
+            History history = new History();
+            history.ShowDialog();
+        }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoginService.userId = 0;
         }
     }
 }

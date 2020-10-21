@@ -14,9 +14,9 @@ namespace DataLayer
     
     public partial class UserAddresses
     {
-        public int id { get; set; }
-        public int usr_id { get; set; }
-        public int addr_id { get; set; }
+        public long id { get; set; }
+        public long usr_id { get; set; }
+        public long addr_id { get; set; }
         public int bed_count { get; set; }
         public bool animals { get; set; }
         public bool parking { get; set; }

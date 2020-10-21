@@ -5,12 +5,24 @@ namespace BizzLayer
 {
     public class LoginService
     {
+        public static long userId = 0;
+        public static bool isRenter = false;
 
         DbGetters dbGetters = new DbGetters();
 
-        public void findPersonalData(int id)
+        public PersonalData findPersonalData(int phoneNumber)
         {
-            dbGetters.getUserById(id);
+            return dbGetters.getPersonalDataByPhone(phoneNumber);
+        }
+
+        public string getSalt(string username)
+        {
+            return dbGetters.getSalt(username);
+        }
+
+        public Users getUserByHash(string hash)
+        {
+            return dbGetters.getUserByHash(hash);
         }
     }
 }

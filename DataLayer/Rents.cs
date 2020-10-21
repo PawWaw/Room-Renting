@@ -14,9 +14,9 @@ namespace DataLayer
     
     public partial class Rents
     {
-        public int id { get; set; }
-        public int address_id { get; set; }
-        public int user_id { get; set; }
+        public long id { get; set; }
+        public long address_id { get; set; }
+        public long user_id { get; set; }
         public System.DateTime startDate { get; set; }
         public System.DateTime endDate { get; set; }
         public bool is_actual { get; set; }

@@ -12,24 +12,24 @@
             <materialDesign:Card Background="#F5FBEF" Padding="15, 5, 15, 5" Margin="30, 15, 30, 10" HorizontalAlignment="Center" Height="35">
                 <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}" Margin="4, 0, 0, 0">Login to your account!</TextBlock>
             </materialDesign:Card>
-            <TextBox x:Name="Textbox" Margin="30, 10, 30, 10" 
+            <TextBox x:Name="UsernameTB" Margin="30, 10, 30, 10" 
                     materialDesign:HintAssist.Hint="Username"
                     materialDesign:HintAssist.Foreground="#2F9C95"
                     materialDesign:TextFieldAssist.TextFieldCornerRadius="8"
                     materialDesign:TextFieldAssist.UnderlineBrush="#2F9C95"
                     Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
-            <TextBox Margin="30, 10, 30, 10"
+            <PasswordBox x:Name="PasswordTB" Margin="30, 10, 30, 10" PasswordChar="*"
                     materialDesign:HintAssist.Hint="Password"
                     materialDesign:HintAssist.Foreground="#2F9C95"
                     materialDesign:TextFieldAssist.TextFieldCornerRadius="8"
                     materialDesign:TextFieldAssist.UnderlineBrush="#2F9C95"
-                    Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
+                    Style="{StaticResource MaterialDesignOutlinedPasswordFieldPasswordBox}"/>
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
-                    <Button Name="RegisterButton" Margin="30, 10, 10, 10" HorizontalAlignment="Right" Height="30" Width="80"
+                    <Button Name="LoginButton" Margin="30, 10, 10, 10" HorizontalAlignment="Right" Height="30" Width="80"
                     Content="Login" Foreground="#2F9C95"                    
                     Style="{StaticResource MaterialDesignFlatButton}"
-                    Click="RegisterButton_Click"/>
+                    Click="LoginButton_Click"/>
                     <Button Name="CancelButton" Margin="55,10,10,10" 
                     Content="Cancel" Foreground="#2F9C95"
                     Style="{StaticResource MaterialDesignFlatButton}" Height="30" Width="80"

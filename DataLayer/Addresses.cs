@@ -22,7 +22,7 @@ namespace DataLayer
             this.UserAddresses = new HashSet<UserAddresses>();
         }
     
-        public int id { get; set; }
+        public long id { get; set; }
         public string country { get; set; }
         public string city { get; set; }
         public string street { get; set; }

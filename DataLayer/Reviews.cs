@@ -14,9 +14,9 @@ namespace DataLayer
     
     public partial class Reviews
     {
-        public int id { get; set; }
-        public int user_id { get; set; }
-        public int address_id { get; set; }
+        public long id { get; set; }
+        public long user_id { get; set; }
+        public long address_id { get; set; }
         public string comment { get; set; }
         public short vote { get; set; }
         public System.DateTime date { get; set; }

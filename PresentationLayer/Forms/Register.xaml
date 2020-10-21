@@ -12,43 +12,43 @@
             <materialDesign:Card Background="#F5FBEF" Padding="15" Margin="10">
                 <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}" Margin="4, 0, 0, 0">Add all neccessary informations about you!</TextBlock>
             </materialDesign:Card>
-            <TextBox x:Name="Textbox" Margin="30, 10, 30, 10" 
+            <TextBox x:Name="UsernameTextbox" Margin="30, 10, 30, 10" 
                     materialDesign:HintAssist.Hint="Username"
                     materialDesign:HintAssist.Foreground="#2F9C95"
                     materialDesign:TextFieldAssist.TextFieldCornerRadius="8"
                     materialDesign:TextFieldAssist.UnderlineBrush="#2F9C95"
                     Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
-            <TextBox Margin="30, 10, 30, 10"
+            <PasswordBox x:Name="PasswordTextbox" Margin="30, 10, 30, 10" PasswordChar="*"
                     materialDesign:HintAssist.Hint="Password"
                     materialDesign:HintAssist.Foreground="#2F9C95"
                     materialDesign:TextFieldAssist.TextFieldCornerRadius="8"
                     materialDesign:TextFieldAssist.UnderlineBrush="#2F9C95"
-                    Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
-            <TextBox Margin="30, 10, 30, 10"
+                    Style="{StaticResource MaterialDesignOutlinedPasswordFieldPasswordBox}"/>
+            <TextBox x:Name="MailTextbox" Margin="30, 10, 30, 10"
                     materialDesign:HintAssist.Hint="Email"
                     materialDesign:HintAssist.Foreground="#2F9C95"
                     materialDesign:TextFieldAssist.TextFieldCornerRadius="8"
                     materialDesign:TextFieldAssist.UnderlineBrush="#2F9C95"
                     Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
-            <TextBox Margin="30, 10, 30, 10"
+            <TextBox x:Name="NameTextbox" Margin="30, 10, 30, 10"
                     materialDesign:HintAssist.Hint="Name"
                     materialDesign:HintAssist.Foreground="#2F9C95"
                     materialDesign:TextFieldAssist.TextFieldCornerRadius="8"
                     materialDesign:TextFieldAssist.UnderlineBrush="#2F9C95"
                     Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
-            <TextBox Margin="30, 10, 30, 10"
+            <TextBox x:Name="SurnameTextbox" Margin="30, 10, 30, 10"
                     materialDesign:HintAssist.Hint="Surname"
                     materialDesign:HintAssist.Foreground="#2F9C95"
                     materialDesign:TextFieldAssist.TextFieldCornerRadius="8"
                     materialDesign:TextFieldAssist.UnderlineBrush="#2F9C95"
                     Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
-            <TextBox Margin="30, 10, 30, 10" 
+            <TextBox x:Name="PhoneTextbox" Margin="30, 10, 30, 10" 
                     materialDesign:HintAssist.Hint="Phone number"
                     materialDesign:HintAssist.Foreground="#2F9C95"
                     materialDesign:TextFieldAssist.TextFieldCornerRadius="8"
                     materialDesign:TextFieldAssist.UnderlineBrush="#2F9C95"
                     Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
-            <CheckBox Margin="30, 10, 30, 10" Cursor="Hand" Background="#2F9C95"
+            <CheckBox x:Name="IsRenterCheckbox" Margin="30, 10, 30, 10" Cursor="Hand" Background="#2F9C95"
                     Content="I am renting rooms/apartments."
                     Style="{StaticResource MaterialDesignCheckBox}"/>
             <StackPanel Orientation="Vertical">
