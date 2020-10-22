@@ -9,7 +9,7 @@
         Title="Calendar" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid Background="#F5FBEF">
         <Calendar HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" Width="307" Foreground="#FF2F9C95" BorderBrush="Black" Background="#FFF5FBEF" Height="353"/>
-        <ToggleButton x:Name="RenterToggle" Margin="10,10,733,385" IsEnabled="False" Height=" 15" Width="40"/>
+        <ToggleButton x:Name="RenterToggle" Margin="10,10,733,385" IsEnabled="False" Height=" 15" Width="40" Click="RenterToggle_Click"/>
         <Label Content="Choose my flats" HorizontalAlignment="Left" Margin="64,4,0,0" VerticalAlignment="Top" Width="148" FontSize="14"/>
         <ComboBox x:Name="RenterCombobox" Height="24" Margin="190,4,475,385" IsEnabled="False"/>
         <Label x:Name="Label1" Content="Label" HorizontalAlignment="Left" Margin="460,48,0,0" VerticalAlignment="Top" Width="188"/>

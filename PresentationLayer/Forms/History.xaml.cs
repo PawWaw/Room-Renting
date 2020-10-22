@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DataLayer;
 using BizzLayer.Windows;
+using Room_Renting.WS;
 
 namespace Room_Renting.Forms
 {
@@ -35,13 +36,13 @@ namespace Room_Renting.Forms
             {
                 this.IsEnabled = true;
 
-                List<Rents> rents  = historyService.getUserRents(LoginService.userId);
+                List<WSRents> rents  = historyService.getUserRents(LoginService.userId);
 
                 LoadGrid(rents);
             }
         }
 
-        private void LoadGrid(List<Rents> rents)
+        private void LoadGrid(List<WS.WSRents> rents)
         {
             for (int i = 0; i < rents.Count; i++)
             {

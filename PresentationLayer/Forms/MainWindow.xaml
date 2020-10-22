@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Room_Renting"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d" Height="600" Width="1080" Foreground="#F5FBEF" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" Icon="/Room Renting;component/home(2).ico" Title="Room Renter">
+        mc:Ignorable="d" Height="800" Width="1080" Foreground="#F5FBEF" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" Icon="/Room Renting;component/home(2).ico" Title="Room Renter">
     <Window.Resources>
         <Style TargetType="Button" x:Key="TabButton">
             <Setter Property="Background" Value="#0E3B43" />
@@ -49,7 +49,60 @@
         </EventTrigger>
     </Window.Triggers>
     <Grid Background="#F5FBEF">
-        <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="510" Width="1009"/>
+        <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="696" Width="1009" Margin="0,0,0,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="112*"/>
+                <RowDefinition Height="143*"/>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="BedCountTB" Margin="446,93,463,174"  Width="100" Foreground="#2F9C95"
+                materialDesign:HintAssist.Hint="Beds count"
+                materialDesign:HintAssist.Foreground="#2F9C95"
+                materialDesign:TextFieldAssist.TextFieldCornerRadius="8"
+                materialDesign:TextFieldAssist.UnderlineBrush="#2F9C95"
+                Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
+            <DatePicker x:Name="StartDateDP" 
+                        materialDesign:HintAssist.Hint="Start Date"
+                        materialDesign:TextFieldAssist.UnderlineBrush="#2F9C95"
+                        HorizontalAlignment="Left" Foreground="#2F9C95" Margin="60,40,0,0" 
+                        VerticalAlignment="Top" Height="39" Width="100"/>
+            <DatePicker x:Name="EndDateDP" 
+                        materialDesign:HintAssist.Hint="End Date" 
+                        materialDesign:TextFieldAssist.UnderlineBrush="#2F9C95"
+                        HorizontalAlignment="Left" Foreground="#2F9C95" Margin="60,92,0,0" 
+                        VerticalAlignment="Top" Height="39" Width="100"/>
+            <CheckBox x:Name="ParkingCB" Content="Parking" FontSize="14" Foreground="#2F9C95" HorizontalAlignment="Left" Margin="307,40,0,0" VerticalAlignment="Top" Height="39" Width="110"/>
+            <CheckBox x:Name="KitchenCB" Content="Kitchen" FontSize="14" Foreground="#2F9C95" HorizontalAlignment="Left" Margin="192,40,0,0" VerticalAlignment="Top" Height="39" Width="110"/>
+            <CheckBox x:Name="AnimalsCB" Content="Animals" FontSize="14" Foreground="#2F9C95" HorizontalAlignment="Left" Margin="446,40,0,0" VerticalAlignment="Top" Height="39" Width="110"/>
+            <DataGrid x:Name="DataGridBox" HorizontalAlignment="Left" Height="505" Margin="60,171,0,0" VerticalAlignment="Top" Width="900" Background="#F5FBEF" Grid.RowSpan="2">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Address" Binding="{Binding Path=address}" Width="250"/>
+                    <DataGridTextColumn Header="Description" Binding="{Binding Path=description}" Width="380"/>
+                    <DataGridTextColumn Header="Price" Binding="{Binding Path=price}" Width="100"/>
+                    <DataGridTextColumn Header="Rating" Binding="{Binding Path=rating}" Width="80"/>
+                    <DataGridTextColumn Header="Rates" Binding="{Binding Path=rates}" Width="80"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Name="SearchButton" Margin="0,93,49,174" HorizontalAlignment="Right" Height="Auto" Width="87"
+                    Content="Search" Foreground="#2F9C95"                    
+                    Style="{StaticResource MaterialDesignFlatButton}"
+                    Click="SearchButton_Click"/>
+            <TextBox x:Name="CityTB" Margin="192,93,592,175" Foreground="#2F9C95"
+                materialDesign:HintAssist.Hint="City"
+                materialDesign:HintAssist.Foreground="#2F9C95"
+                materialDesign:TextFieldAssist.TextFieldCornerRadius="8"
+                materialDesign:TextFieldAssist.UnderlineBrush="#2F9C95"
+                Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
+            <TextBox x:Name="PriceTB" Margin="575,93,334,174"  Width="100" Foreground="#2F9C95"
+                materialDesign:HintAssist.Hint="Price"
+                materialDesign:HintAssist.Foreground="#2F9C95"
+                materialDesign:TextFieldAssist.TextFieldCornerRadius="8"
+                materialDesign:TextFieldAssist.UnderlineBrush="#2F9C95"
+                Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
+            <ComboBox HorizontalAlignment="Left" Margin="575,51,0,0" VerticalAlignment="Top" Foreground="#2F9C95" Width="100" Name="PriceCB" RenderTransformOrigin="0.267,0.643">
+                <ComboBoxItem Content="OVER"/>
+                <ComboBoxItem Content="UNDER"/>
+            </ComboBox>
+        </Grid>
         <Grid Height="60" VerticalAlignment="Top" Background="#0E3B43">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="2" ShadowDepth="1" Color="#F5FBEF"/>
@@ -117,7 +170,7 @@
                             <TextBlock Text="Reservation history" VerticalAlignment="Center"  Margin="10 10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem x:Name="ItemReviews" Height="60" Background="#F5FBEF" Cursor="Hand">
+                    <ListViewItem x:Name="ItemReviews" Height="60" Background="#F5FBEF" Cursor="Hand" Selected="ItemReviews_Selected">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Vote" Height="25" Width="25" Margin="10"/>
                             <TextBlock Text="Reviews" VerticalAlignment="Center"  Margin="10 10"/>

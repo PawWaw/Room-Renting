@@ -1,8 +1,12 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 using BizzLayer;
+using BizzLayer.Windows;
+using DataLayer.Classes;
 using MaterialDesignThemes.Wpf;
 using Room_Renting.Forms;
+using Room_Renting.WS;
 
 namespace Room_Renting
 {
@@ -11,6 +15,8 @@ namespace Room_Renting
     /// </summary>
     public partial class MainWindow : Window
     {
+        private FlatsService flatsService = new FlatsService();
+        private List<WSAddresses> rents = new List<WSAddresses>();
 
         public MainWindow()
         {
@@ -84,7 +90,8 @@ namespace Room_Renting
 
         private void ItemCreate_Selected(object sender, RoutedEventArgs e)
         {
-
+            Create create = new Create();
+            create.ShowDialog();
         }
 
         private void ItemHome_Selected(object sender, RoutedEventArgs e)
@@ -101,6 +108,60 @@ namespace Room_Renting
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             LoginService.userId = 0;
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            DataGridBox.Items.Clear();
+            FlatSearchCriteria criteria = new FlatSearchCriteria();
+            criteria.startDate = StartDateDP.SelectedDate.GetValueOrDefault();
+            criteria.endDate = EndDateDP.SelectedDate.GetValueOrDefault();
+            if (!BedCountTB.Text.Equals(""))
+            {
+                int parsed;
+                if (int.TryParse(BedCountTB.Text, out parsed))
+                {
+                    criteria.bedCount = parsed;
+                }
+            }
+            if (!PriceTB.Text.Equals(""))
+            {
+                int parsed;
+                if (int.TryParse(PriceTB.Text, out parsed))
+                {
+                    criteria.price = parsed;
+                    if (PriceCB.SelectedIndex == 0)
+                    {
+                        criteria.over = true;
+                    }
+                    else
+                    {
+                        criteria.over = false;
+                    }
+                }
+            }
+            criteria.city = CityTB.Text;
+            criteria.animals = AnimalsCB.IsChecked.GetValueOrDefault();
+            criteria.kitchen = KitchenCB.IsChecked.GetValueOrDefault();
+            criteria.parking = ParkingCB.IsChecked.GetValueOrDefault();
+
+            rents = flatsService.getAvailableRooms(criteria);
+
+            LoadGrid(rents);
+        }
+
+        private void LoadGrid(List<WSAddresses> rents)
+        {
+            for (int i = 0; i < rents.Count; i++)
+            {
+                DataGridBox.Items.Add(rents[i]);
+            }
+        }
+
+        private void ItemReviews_Selected(object sender, RoutedEventArgs e)
+        {
+            Reviews reviews = new Reviews();
+            reviews.ShowDialog();
         }
     }
 }

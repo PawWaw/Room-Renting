@@ -1,11 +1,11 @@
-﻿<Window x:Class="Room_Renting.Forms.Reviews"
+﻿<Window x:Class="Room_Renting.Forms.Create"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Room_Renting.Forms"
         mc:Ignorable="d"
-        Title="Reviews" Height="450" Width="400" Background="#F5FBEF">
+        Title="Create" Height="450" Width="400" Background="#F5FBEF">
     <Grid>
         
     </Grid>

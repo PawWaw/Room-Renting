@@ -39,7 +39,7 @@
           <Property Name="endDate" Type="date" Nullable="false" />
           <Property Name="is_actual" Type="bit" Nullable="false" />
           <Property Name="pending" Type="bit" Nullable="false" />
-          <Property Name="rated" Type="smallint" />
+          <Property Name="rated" Type="bit" />
         </EntityType>
         <EntityType Name="Reviews">
           <Key>
@@ -63,6 +63,10 @@
           <Property Name="animals" Type="bit" Nullable="false" />
           <Property Name="parking" Type="bit" Nullable="false" />
           <Property Name="kitchen" Type="bit" Nullable="false" />
+          <Property Name="price" Type="float" Nullable="false" />
+          <Property Name="rate" Type="float" />
+          <Property Name="rateCount" Type="int" />
+          <Property Name="description" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -246,7 +250,7 @@
           <Property Name="endDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="is_actual" Type="Boolean" Nullable="false" />
           <Property Name="pending" Type="Boolean" Nullable="false" />
-          <Property Name="rated" Type="Int16" />
+          <Property Name="rated" Type="Boolean" />
           <NavigationProperty Name="Addresses" Relationship="Self.FK_Rents_Addresses" FromRole="Rents" ToRole="Addresses" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Rents_Users" FromRole="Rents" ToRole="Users" />
         </EntityType>
@@ -274,6 +278,10 @@
           <Property Name="animals" Type="Boolean" Nullable="false" />
           <Property Name="parking" Type="Boolean" Nullable="false" />
           <Property Name="kitchen" Type="Boolean" Nullable="false" />
+          <Property Name="price" Type="Double" Nullable="false" />
+          <Property Name="rate" Type="Double" />
+          <Property Name="rateCount" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Addresses" Relationship="Self.FK_UserAddresses_Addresses" FromRole="UserAddresses" ToRole="Addresses" />
           <NavigationProperty Name="Users" Relationship="Self.FK_UserAddresses_Users" FromRole="UserAddresses" ToRole="Users" />
         </EntityType>
@@ -487,6 +495,10 @@
                 <ScalarProperty Name="animals" ColumnName="animals" />
                 <ScalarProperty Name="parking" ColumnName="parking" />
                 <ScalarProperty Name="kitchen" ColumnName="kitchen" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="rateCount" ColumnName="rateCount" />
+                <ScalarProperty Name="description" ColumnName="description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -21,6 +21,10 @@ namespace DataLayer
         public bool animals { get; set; }
         public bool parking { get; set; }
         public bool kitchen { get; set; }
+        public double price { get; set; }
+        public Nullable<double> rate { get; set; }
+        public Nullable<int> rateCount { get; set; }
+        public string description { get; set; }
     
         public virtual Addresses Addresses { get; set; }
         public virtual Users Users { get; set; }

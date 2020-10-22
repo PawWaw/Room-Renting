@@ -54,6 +54,9 @@
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
     <Compile Include="Classes\DbGetters.cs" />
+    <Compile Include="Classes\FlatSearchCriteria.cs" />
+    <Compile Include="Classes\WSAddresses.cs" />
+    <Compile Include="Classes\WSRents.cs" />
     <Compile Include="Database.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

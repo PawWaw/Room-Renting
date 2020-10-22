@@ -38,7 +38,7 @@ namespace Room_Renting.Forms
             if (LoginService.isRenter)
             {
                 RenterToggle.IsEnabled = true;
-                RenterCombobox.IsEnabled = true;
+                RenterCombobox.IsEnabled = false;
 
                 List<Addresses> userAddresses = calendarService.getUserAddresses(LoginService.userId);
 
@@ -46,6 +46,18 @@ namespace Room_Renting.Forms
                 {
                     RenterCombobox.Items.Add(userAddresses[i].street);
                 }
+            }
+        }
+
+        private void RenterToggle_Click(object sender, RoutedEventArgs e)
+        {
+            if (RenterToggle.IsChecked == true)
+            {
+                RenterCombobox.IsEnabled = true;
+            }
+            else
+            {
+                RenterCombobox.IsEnabled = false;
             }
         }
     }
