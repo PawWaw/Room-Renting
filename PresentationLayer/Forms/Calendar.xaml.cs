@@ -35,6 +35,9 @@ namespace Room_Renting.Forms
             {
                 this.IsEnabled = false;
             }
+
+            Cal.SelectionMode = CalendarSelectionMode.MultipleRange;
+
             if (LoginService.isRenter)
             {
                 RenterToggle.IsEnabled = true;
@@ -45,6 +48,8 @@ namespace Room_Renting.Forms
                 for (int i = 0; i < userAddresses.Count; i++)
                 {
                     RenterCombobox.Items.Add(userAddresses[i].street);
+                    DateTime date = new DateTime(2020, 10, 10);
+                    Cal.SelectedDate = date;
                 }
             }
         }

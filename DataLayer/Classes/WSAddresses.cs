@@ -8,6 +8,9 @@ namespace DataLayer.Classes
 {
     public class WSAddresses
     {
+
+        public long address_id { get; set; }
+
         public string address { get; set; }
 
         public string type { get; set; }

@@ -27,6 +27,7 @@ namespace BizzLayer.Windows
             for (int j = 0; j < userAddresses.Count; j++)
             {
                 WSAddresses temp = new WSAddresses();
+                temp.address_id = addresses[j].id;
                 temp.address = addresses[j].country + ", " + addresses[j].city + ", " + addresses[j].street + " " + addresses[j].house;
                 temp.bed_count = userAddresses[j].bed_count;
                 temp.price = userAddresses[j].price;

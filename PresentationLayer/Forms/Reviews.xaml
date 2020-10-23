@@ -1,12 +1,25 @@
-﻿<Window x:Class="Room_Renting.Forms.Reviews"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Room_Renting.Forms"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="Room_Renting.Forms.Reviews"
         mc:Ignorable="d"
-        Title="Reviews" Height="450" Width="400" Background="#F5FBEF">
-    <Grid>
-        
+        Title="Reviews" Height="330" Width="338" Background="#F5FBEF" ResizeMode="NoResize">
+    <Grid Margin="0,0,2,0">
+        <materialDesign:Card Background="#F5FBEF" Padding="15, 5, 15, 5" Margin="40,29,30,229" HorizontalAlignment="Center" Width="230">
+            <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}" Margin="4, 0, 0, 0" HorizontalAlignment="Center"><Run Text="Rate your rent!"/></TextBlock>
+        </materialDesign:Card>
+        <materialDesign:RatingBar x:Name="RateRB" Background="#F5FBEF" Padding="15, 5, 15, 5" Margin="93,161,44,98" Foreground="#2F9C95" IsEnabled="False"/>
+        <ComboBox HorizontalAlignment="Left" Margin="54,94,0,0" VerticalAlignment="Top" Foreground="#2F9C95" Width="230" x:Name="RentCB" RenderTransformOrigin="0.267,0.643" Height="42" IsEnabled="False"/>
+        <Button x:Name="SaveButton" Margin="0,229,194,30" HorizontalAlignment="Right" Width="80"
+            Content="Rate" Foreground="#2F9C95"                    
+            Style="{StaticResource MaterialDesignFlatButton}"
+            Click="SaveButton_Click"/>
+        <Button x:Name="CancelButton" Margin="204,229,44,30" Width="80"
+            Content="Cancel" Foreground="#2F9C95"
+            Style="{StaticResource MaterialDesignFlatButton}"
+            Click="CancelButton_Click"/>
     </Grid>
 </Window>

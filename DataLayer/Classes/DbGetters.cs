@@ -72,6 +72,19 @@ namespace DataLayer
             return rents;
         }
 
+        public List<Rents> getUserNotRatedRents(long userId)
+        {
+            List<Rents> rents = new List<Rents>();
+            using (var context = new RoomRentEntities())
+            {
+                rents = context.Rents
+                    .Where(c => c.user_id == userId && !c.rated)
+                    .ToList();
+            }
+
+            return rents;
+        }
+
         public List<Addresses> getUserAddresses(long userId)
         {
             List<long> userAddressesIds = new List<long>();

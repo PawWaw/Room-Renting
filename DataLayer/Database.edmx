@@ -39,7 +39,7 @@
           <Property Name="endDate" Type="date" Nullable="false" />
           <Property Name="is_actual" Type="bit" Nullable="false" />
           <Property Name="pending" Type="bit" Nullable="false" />
-          <Property Name="rated" Type="bit" />
+          <Property Name="rated" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Reviews">
           <Key>
@@ -250,7 +250,7 @@
           <Property Name="endDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="is_actual" Type="Boolean" Nullable="false" />
           <Property Name="pending" Type="Boolean" Nullable="false" />
-          <Property Name="rated" Type="Boolean" />
+          <Property Name="rated" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Addresses" Relationship="Self.FK_Rents_Addresses" FromRole="Rents" ToRole="Addresses" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Rents_Users" FromRole="Rents" ToRole="Users" />
         </EntityType>

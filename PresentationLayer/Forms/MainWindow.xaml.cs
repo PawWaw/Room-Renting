@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 using BizzLayer;
@@ -21,6 +22,10 @@ namespace Room_Renting
         public MainWindow()
         {
             InitializeComponent();
+            if (LoginService.userId != 0)
+            {
+                RentButton.IsEnabled = true;
+            }
         }
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
@@ -33,26 +38,6 @@ namespace Room_Renting
         {
             ButtonCloseMenu.Visibility = Visibility.Collapsed;
             ButtonOpenMenu.Visibility = Visibility.Visible;
-        }
-
-        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            UserControl usc = null;
-            GridMain.Children.Clear();
-
-            switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
-            {
-                case "ItemHome":
-                    //usc = new UserControlHome();
-                    GridMain.Children.Add(usc);
-                    break;
-                case "ItemCreate":
-                    //usc = new UserControlCreate();
-                    GridMain.Children.Add(usc);
-                    break;
-                default:
-                    break;
-            }
         }
 
         private void HelpButton_Click(object sender, RoutedEventArgs e)
@@ -152,16 +137,39 @@ namespace Room_Renting
 
         private void LoadGrid(List<WSAddresses> rents)
         {
-            for (int i = 0; i < rents.Count; i++)
-            {
-                DataGridBox.Items.Add(rents[i]);
-            }
+            DataGridBox.ItemsSource = rents;
         }
 
         private void ItemReviews_Selected(object sender, RoutedEventArgs e)
         {
             Reviews reviews = new Reviews();
             reviews.ShowDialog();
+        }
+
+        private void Row_DoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void RentButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (StartDateDP.SelectedDate != null && EndDateDP.SelectedDate != null && DataGridBox.SelectedItem != null)
+            {
+                Create create = new Create(rents[DataGridBox.SelectedIndex].address_id, StartDateDP.SelectedDate, EndDateDP.SelectedDate);
+                create.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Choose start and end date", "Error", MessageBoxButton.OK);
+            }
+        }
+
+        private void Room_Renter_Activated(object sender, System.EventArgs e)
+        {
+            if (LoginService.userId != 0)
+            {
+                RentButton.IsEnabled = true;
+            }
         }
     }
 }

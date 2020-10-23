@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Room_Renting"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d" Height="800" Width="1080" Foreground="#F5FBEF" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" Icon="/Room Renting;component/home(2).ico" Title="Room Renter">
+        mc:Ignorable="d" Height="800" Width="1080" Foreground="#F5FBEF" Activated="Room_Renter_Activated" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" Icon="/Room Renting;component/home(2).ico" Title="Room Renter">
     <Window.Resources>
         <Style TargetType="Button" x:Key="TabButton">
             <Setter Property="Background" Value="#0E3B43" />
@@ -73,7 +73,7 @@
             <CheckBox x:Name="ParkingCB" Content="Parking" FontSize="14" Foreground="#2F9C95" HorizontalAlignment="Left" Margin="307,40,0,0" VerticalAlignment="Top" Height="39" Width="110"/>
             <CheckBox x:Name="KitchenCB" Content="Kitchen" FontSize="14" Foreground="#2F9C95" HorizontalAlignment="Left" Margin="192,40,0,0" VerticalAlignment="Top" Height="39" Width="110"/>
             <CheckBox x:Name="AnimalsCB" Content="Animals" FontSize="14" Foreground="#2F9C95" HorizontalAlignment="Left" Margin="446,40,0,0" VerticalAlignment="Top" Height="39" Width="110"/>
-            <DataGrid x:Name="DataGridBox" HorizontalAlignment="Left" Height="505" Margin="60,171,0,0" VerticalAlignment="Top" Width="900" Background="#F5FBEF" Grid.RowSpan="2">
+            <DataGrid x:Name="DataGridBox" HorizontalAlignment="Left" Height="505" Margin="60,171,0,0" VerticalAlignment="Top" Width="900" Background="#F5FBEF" Grid.RowSpan="2" IsReadOnly="True" CanUserAddRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Address" Binding="{Binding Path=address}" Width="250"/>
                     <DataGridTextColumn Header="Description" Binding="{Binding Path=description}" Width="380"/>
@@ -81,8 +81,13 @@
                     <DataGridTextColumn Header="Rating" Binding="{Binding Path=rating}" Width="80"/>
                     <DataGridTextColumn Header="Rates" Binding="{Binding Path=rates}" Width="80"/>
                 </DataGrid.Columns>
+                <DataGrid.ItemContainerStyle>
+                    <Style TargetType="DataGridRow">
+                        <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
+                    </Style>
+                </DataGrid.ItemContainerStyle>
             </DataGrid>
-            <Button Name="SearchButton" Margin="0,93,49,174" HorizontalAlignment="Right" Height="Auto" Width="87"
+            <Button Name="SearchButton" Margin="0,93,138,174" HorizontalAlignment="Right" Height="Auto" Width="87"
                     Content="Search" Foreground="#2F9C95"                    
                     Style="{StaticResource MaterialDesignFlatButton}"
                     Click="SearchButton_Click"/>
@@ -102,6 +107,10 @@
                 <ComboBoxItem Content="OVER"/>
                 <ComboBoxItem Content="UNDER"/>
             </ComboBox>
+            <Button x:Name="RentButton" Margin="0,93,49,174" HorizontalAlignment="Right" Height="Auto" Width="87"
+                Content="Rent" Foreground="#2F9C95"                    
+                Style="{StaticResource MaterialDesignFlatButton}"
+                Click="RentButton_Click" IsEnabled="False"/>
         </Grid>
         <Grid Height="60" VerticalAlignment="Top" Background="#0E3B43">
             <Grid.Effect>
