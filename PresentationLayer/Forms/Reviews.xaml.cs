@@ -39,7 +39,7 @@ namespace Room_Renting.Forms
                 for (int i = 0; i < rents.Count; i++)
                 {
                     RentCB.Items.Add(rents[i].address + ", " + rents[i].startDate.ToShortDateString() + "-" + rents[i].endDate.ToShortDateString());
-                    ids.Add(rents[i].id);
+                    ids.Add(rents[i].addressId);
                 }
             }
         }
@@ -49,7 +49,7 @@ namespace Room_Renting.Forms
             if ((RentCB.SelectedItem != null))
             {
                 dbSetters.rateAddress(RateRB.Value, ids[RentCB.SelectedIndex]);
-                dbSetters.isRated(ids[RentCB.SelectedIndex]);
+                dbSetters.isRated(ids[RentCB.SelectedIndex], RateRB.Value);
                 this.Close();
             }
             else

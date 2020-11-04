@@ -21,7 +21,7 @@ namespace BizzLayer.Windows
                 temp.startDate = rents[i].startDate;
                 temp.endDate = rents[i].endDate;
                 temp.id = rents[i].id;
-                temp.rated = rents[i].rated;
+                temp.rate = rents[i].rate;
                 for (int j = 0; j < addresses.Count; j++)
                 {
                     if (rents[i].address_id == addresses[j].id)

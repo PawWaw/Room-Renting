@@ -93,10 +93,12 @@ namespace Room_Renting
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             LoginService.userId = 0;
+            LoginService.user = "";
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
+            DataGridBox.ClearValue(ItemsControl.ItemsSourceProperty);
             DataGridBox.Items.Clear();
             FlatSearchCriteria criteria = new FlatSearchCriteria();
             criteria.startDate = StartDateDP.SelectedDate.GetValueOrDefault();
@@ -137,18 +139,16 @@ namespace Room_Renting
 
         private void LoadGrid(List<WSAddresses> rents)
         {
-            DataGridBox.ItemsSource = rents;
+            for (int i = 0; i < rents.Count; i++)
+            {
+                DataGridBox.Items.Add(rents[i]);
+            }
         }
 
         private void ItemReviews_Selected(object sender, RoutedEventArgs e)
         {
             Reviews reviews = new Reviews();
             reviews.ShowDialog();
-        }
-
-        private void Row_DoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-
         }
 
         private void RentButton_Click(object sender, RoutedEventArgs e)

@@ -52,7 +52,7 @@ namespace Room_Renting.Forms
                     rent.endDate = (DateTime)this.endDate;
                     rent.is_actual = true;
                     rent.pending = false;
-                    rent.rated = false;
+                    rent.isRated = false;
                     rent.user_id = LoginService.userId;
                     rent.address_id = address_id;
 

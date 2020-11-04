@@ -21,7 +21,8 @@ namespace DataLayer
         public System.DateTime endDate { get; set; }
         public bool is_actual { get; set; }
         public bool pending { get; set; }
-        public bool rated { get; set; }
+        public bool isRated { get; set; }
+        public Nullable<int> rate { get; set; }
     
         public virtual Addresses Addresses { get; set; }
         public virtual Users Users { get; set; }

@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1340d0a62ae248ff88a773c5ee69f9fa" Name="Diagram1">
-        <EntityTypeShape EntityType="RoomRentModel.Addresses" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RoomRentModel.PersonalData" Width="1.5" PointX="5.375" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="RoomRentModel.Rents" Width="1.5" PointX="0.625" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RoomRentModel.Reviews" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="RoomRentModel.UserAddresses" Width="1.5" PointX="5.375" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RoomRentModel.Users" Width="1.5" PointX="0.625" PointY="4.25" IsExpanded="true" />
+      <Diagram DiagramId="ded9f8cc336748488bc32d5d5d2dfb10" Name="Diagram1">
+        <EntityTypeShape EntityType="RoomRentModel.Addresses" Width="1.5" PointX="6" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomRentModel.PersonalData" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomRentModel.Rents" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomRentModel.Reviews" Width="1.5" PointX="8.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomRentModel.UserAddresses" Width="1.5" PointX="8.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomRentModel.Users" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
         <AssociationConnector Association="RoomRentModel.FK_Rents_Addresses" ManuallyRouted="false" />
         <AssociationConnector Association="RoomRentModel.FK_Reviews_Addresses" ManuallyRouted="false" />
         <AssociationConnector Association="RoomRentModel.FK_UserAddresses_Addresses" ManuallyRouted="false" />

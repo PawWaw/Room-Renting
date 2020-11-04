@@ -1,19 +1,12 @@
 ﻿using BizzLayer;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using DataLayer;
 using BizzLayer.Windows;
+using DataLayer.Classes;
+using System.Linq;
+using System.Windows.Controls;
 
 namespace Room_Renting.Forms
 {
@@ -23,6 +16,7 @@ namespace Room_Renting.Forms
     public partial class Calendar : Window
     {
         CalendarService calendarService = new CalendarService();
+        List<Rents> rents;
 
         public Calendar()
         {
@@ -36,34 +30,66 @@ namespace Room_Renting.Forms
                 this.IsEnabled = false;
             }
 
-            Cal.SelectionMode = CalendarSelectionMode.MultipleRange;
-
             if (LoginService.isRenter)
             {
                 RenterToggle.IsEnabled = true;
                 RenterCombobox.IsEnabled = false;
 
                 List<Addresses> userAddresses = calendarService.getUserAddresses(LoginService.userId);
+                rents = calendarService.getUserFutureRents(LoginService.userId);
 
                 for (int i = 0; i < userAddresses.Count; i++)
                 {
                     RenterCombobox.Items.Add(userAddresses[i].street);
                     DateTime date = new DateTime(2020, 10, 10);
-                    Cal.SelectedDate = date;
                 }
+
+                loadLandlordColumns(rents);
+            }
+        }
+
+        private void LoadGrid(List<WSCalendar> rents)
+        {
+            for (int i = 0; i < rents.Count; i++)
+            {
+                DataGridBox.Items.Add(rents[i]);
             }
         }
 
         private void RenterToggle_Click(object sender, RoutedEventArgs e)
         {
+            DataGridBox.ClearValue(ItemsControl.ItemsSourceProperty);
+            DataGridBox.Items.Clear();
             if (RenterToggle.IsChecked == true)
             {
                 RenterCombobox.IsEnabled = true;
+                loadLandlordColumns(rents);
             }
             else
             {
                 RenterCombobox.IsEnabled = false;
+                loadTenantColumns();
             }
+        }
+
+        private void loadLandlordColumns(List<Rents> rents)
+        {
+            List<WSCalendar> calendarList = new List<WSCalendar>();
+            for (int i = 0; i < rents.Count; i++)
+            {
+                WSCalendar temp = new WSCalendar();
+                temp.startDate = rents[i].startDate.ToShortDateString();
+                temp.endDate = rents[i].endDate.ToShortDateString();
+                temp.address = calendarService.getAddress(rents[i].address_id);
+                temp.client = calendarService.getPerson(rents[i].user_id);
+                calendarList.Add(temp);
+            }
+            LoadGrid(calendarList);
+        }
+
+        private void loadTenantColumns()
+        {
+
         }
     }
 }

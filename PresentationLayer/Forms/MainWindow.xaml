@@ -73,7 +73,7 @@
             <CheckBox x:Name="ParkingCB" Content="Parking" FontSize="14" Foreground="#2F9C95" HorizontalAlignment="Left" Margin="307,40,0,0" VerticalAlignment="Top" Height="39" Width="110"/>
             <CheckBox x:Name="KitchenCB" Content="Kitchen" FontSize="14" Foreground="#2F9C95" HorizontalAlignment="Left" Margin="192,40,0,0" VerticalAlignment="Top" Height="39" Width="110"/>
             <CheckBox x:Name="AnimalsCB" Content="Animals" FontSize="14" Foreground="#2F9C95" HorizontalAlignment="Left" Margin="446,40,0,0" VerticalAlignment="Top" Height="39" Width="110"/>
-            <DataGrid x:Name="DataGridBox" HorizontalAlignment="Left" Height="505" Margin="60,171,0,0" VerticalAlignment="Top" Width="900" Background="#F5FBEF" Grid.RowSpan="2" IsReadOnly="True" CanUserAddRows="False">
+            <DataGrid x:Name="DataGridBox" ItemsSource="{Binding Path=rents}" HorizontalAlignment="Left" Height="505" Margin="61,171,0,0" VerticalAlignment="Top" Width="900" Background="#F5FBEF" Grid.RowSpan="2" IsReadOnly="True" CanUserAddRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Address" Binding="{Binding Path=address}" Width="250"/>
                     <DataGridTextColumn Header="Description" Binding="{Binding Path=description}" Width="380"/>
@@ -81,11 +81,6 @@
                     <DataGridTextColumn Header="Rating" Binding="{Binding Path=rating}" Width="80"/>
                     <DataGridTextColumn Header="Rates" Binding="{Binding Path=rates}" Width="80"/>
                 </DataGrid.Columns>
-                <DataGrid.ItemContainerStyle>
-                    <Style TargetType="DataGridRow">
-                        <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
-                    </Style>
-                </DataGrid.ItemContainerStyle>
             </DataGrid>
             <Button Name="SearchButton" Margin="0,93,138,174" HorizontalAlignment="Right" Height="Auto" Width="87"
                     Content="Search" Foreground="#2F9C95"                    
@@ -143,6 +138,7 @@
                     </StackPanel>
                 </materialDesign:PopupBox>
             </StackPanel>
+            <Label x:Name="UserLabel" Content="" HorizontalAlignment="Left" Margin="78,10,0,0" VerticalAlignment="Top" Height="40" Width="272"/>
         </Grid>
         <Grid x:Name="GridMenu" Width="60" HorizontalAlignment="Left" Background="#F5FBEF">
             <StackPanel>

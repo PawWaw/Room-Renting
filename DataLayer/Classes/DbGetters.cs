@@ -33,12 +33,13 @@ namespace DataLayer
             return personal;
         }
 
-        public Users getUserByHash(string hash)
+        public Users getUserByHash(string username, string hash)
         {
             Users user = new Users();
             using (var context = new RoomRentEntities())
             {
                 user = context.Users
+                    .Where(c => c.username == username)
                     .Where(c => c.password == hash)
                     .FirstOrDefault();
             }
@@ -66,6 +67,7 @@ namespace DataLayer
             {
                 rents = context.Rents
                     .Where(c => c.user_id == userId)
+                    .Where(c => c.startDate < DateTime.Now)
                     .ToList();
             }
 
@@ -78,7 +80,21 @@ namespace DataLayer
             using (var context = new RoomRentEntities())
             {
                 rents = context.Rents
-                    .Where(c => c.user_id == userId && !c.rated)
+                    .Where(c => c.user_id == userId && !c.isRated)
+                    .ToList();
+            }
+
+            return rents;
+        }
+
+        public List<Rents> getUserFutureRents(long userId)
+        {
+            List<Rents> rents = new List<Rents>();
+            using (var context = new RoomRentEntities())
+            {
+                rents = context.Rents
+                    .Where(c => c.user_id == userId)
+                    .Where(c => c.startDate > DateTime.Now)
                     .ToList();
             }
 
@@ -154,11 +170,20 @@ namespace DataLayer
             using (var context = new RoomRentEntities())
             {
                 var temp = context.UserAddresses
-                    .Where(c => addressIds.Contains(c.addr_id))
-                    .Where(c => c.kitchen == criteria.kitchen)
-                    .Where(c => c.parking == criteria.parking)
-                    .Where(c => c.animals == criteria.animals);
+                    .Where(c => addressIds.Contains(c.addr_id));
 
+                if (criteria.kitchen)
+                {
+                    temp = temp.Where(c => c.kitchen == true);
+                }
+                if (criteria.parking)
+                {
+                    temp = temp.Where(c => c.parking == true);
+                }
+                if (criteria.animals)
+                {
+                    temp = temp.Where(c => c.animals == true);
+                }
                 if (criteria.bedCount != null)
                 {
                     temp = temp.Where(c => c.bed_count >= criteria.bedCount);
@@ -179,6 +204,43 @@ namespace DataLayer
             }
 
             return addresses;
+        }
+
+        public string getAddress(long addressId)
+        {
+            Addresses temp = new Addresses();
+            using (var context = new RoomRentEntities())
+            {
+                temp = context.Addresses
+                    .Where(c => c.id == addressId).FirstOrDefault();
+            }
+            string str = temp.country + ", " + temp.city + " " + temp.street + " " + temp.house;
+
+            if (temp.flat != null)
+            {
+                str += "/" + temp.flat;
+            }
+
+            return str;
+        }
+
+        public string getPerson(long userId)
+        {
+            Users temp = new Users();
+            PersonalData temp2 = new PersonalData();
+            using (var context = new RoomRentEntities())
+            {
+                temp = context.Users
+                    .Where(c => c.id == userId).FirstOrDefault();
+
+                temp2 = context.PersonalData
+                    .Where(d => d.id == temp.personal_id).FirstOrDefault();
+            }
+
+
+            string str = temp2.name + " " + temp2.surname;
+
+            return str;
         }
     }
 }

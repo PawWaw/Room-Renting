@@ -39,7 +39,8 @@
           <Property Name="endDate" Type="date" Nullable="false" />
           <Property Name="is_actual" Type="bit" Nullable="false" />
           <Property Name="pending" Type="bit" Nullable="false" />
-          <Property Name="rated" Type="bit" Nullable="false" />
+          <Property Name="isRated" Type="bit" Nullable="false" />
+          <Property Name="rate" Type="int" />
         </EntityType>
         <EntityType Name="Reviews">
           <Key>
@@ -250,7 +251,8 @@
           <Property Name="endDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="is_actual" Type="Boolean" Nullable="false" />
           <Property Name="pending" Type="Boolean" Nullable="false" />
-          <Property Name="rated" Type="Boolean" Nullable="false" />
+          <Property Name="isRated" Type="Boolean" Nullable="false" />
+          <Property Name="rate" Type="Int32" />
           <NavigationProperty Name="Addresses" Relationship="Self.FK_Rents_Addresses" FromRole="Rents" ToRole="Addresses" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Rents_Users" FromRole="Rents" ToRole="Users" />
         </EntityType>
@@ -469,7 +471,8 @@
                 <ScalarProperty Name="endDate" ColumnName="endDate" />
                 <ScalarProperty Name="is_actual" ColumnName="is_actual" />
                 <ScalarProperty Name="pending" ColumnName="pending" />
-                <ScalarProperty Name="rated" ColumnName="rated" />
+                <ScalarProperty Name="isRated" ColumnName="isRated" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

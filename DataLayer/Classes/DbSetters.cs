@@ -9,7 +9,7 @@ namespace DataLayer.Classes
     public class DbSetters
     {
 
-        public void isRated(long id)
+        public void isRated(long id, int value)
         {
             using (var context = new RoomRentEntities())
             {
@@ -18,7 +18,8 @@ namespace DataLayer.Classes
                     .FirstOrDefault();
                 if (personal != null)
                 {
-                    personal.rated = true;
+                    personal.isRated = true;
+                    personal.rate = value;
                     context.SaveChanges();
                 }
             }
@@ -38,7 +39,7 @@ namespace DataLayer.Classes
             using (var context = new RoomRentEntities())
             {
                 var address = context.UserAddresses
-                    .Where(c => c.id == id)
+                    .Where(c => c.addr_id == id)
                     .FirstOrDefault();
                 if (address != null)
                 {   

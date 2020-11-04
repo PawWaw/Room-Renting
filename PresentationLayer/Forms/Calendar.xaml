@@ -6,15 +6,18 @@
         xmlns:local="clr-namespace:Room_Renting.Forms"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Calendar" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="Calendar" Height="450" Width="800" Loaded="Window_Loaded" Background="#F5FBEF" ResizeMode="NoResize">
     <Grid Background="#F5FBEF">
-        <Calendar x:Name="Cal" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" Width="307" Foreground="#FF2F9C95" BorderBrush="Black" Background="#FFF5FBEF" Height="353"/>
-        <ToggleButton x:Name="RenterToggle" Margin="10,10,733,385" IsEnabled="False" Height=" 15" Width="40" Click="RenterToggle_Click"/>
-        <Label Content="Choose my flats" HorizontalAlignment="Left" Margin="64,4,0,0" VerticalAlignment="Top" Width="148" FontSize="14"/>
-        <ComboBox x:Name="RenterCombobox" Height="24" Margin="190,4,475,385" IsEnabled="False"/>
-        <Label x:Name="Label1" Content="Label" HorizontalAlignment="Left" Margin="460,48,0,0" VerticalAlignment="Top" Width="188"/>
-        <Label x:Name="Label2" Content="Label" HorizontalAlignment="Left" Margin="460,77,0,0" VerticalAlignment="Top" Width="188"/>
-        <Label x:Name="Label3" Content="Label" HorizontalAlignment="Left" Margin="460,106,0,0" VerticalAlignment="Top" Width="188"/>
-        <Label x:Name="Label4" Content="Label" HorizontalAlignment="Left" Margin="460,135,0,0" VerticalAlignment="Top" Width="188"/>
+        <ToggleButton x:Name="RenterToggle" Margin="68,10,684,385" IsEnabled="False" Click="RenterToggle_Click"/>
+        <Label Content="Choose my flats" HorizontalAlignment="Left" Margin="118,3,0,0" VerticalAlignment="Top" Width="148" FontSize="14"/>
+        <ComboBox x:Name="RenterCombobox" Margin="244,0,421,385" IsEnabled="False"/>
+        <DataGrid x:Name="DataGridBox" HorizontalAlignment="Left" Height="317" Margin="64,68,0,0" VerticalAlignment="Top" Width="664" Background="#F5FBEF" IsReadOnly="True" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Address" Binding="{Binding Path=address}" Width="280"/>
+                <DataGridTextColumn Header="Client" Binding="{Binding Path=client}" Width="150"/>
+                <DataGridTextColumn Header="Start date" Binding="{Binding Path=startDate}" Width="120"/>
+                <DataGridTextColumn Header="End date" Binding="{Binding Path=endDate}" Width="120"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

@@ -22,8 +22,9 @@ namespace BizzLayer.Windows
                 WSRents temp = new WSRents();
                 temp.startDate = rents[i].startDate;
                 temp.endDate = rents[i].endDate;
+                temp.addressId = rents[i].address_id;
                 temp.id = rents[i].id;
-                temp.rated = rents[i].rated;
+                temp.rate = rents[i].rate;
                 for (int j = 0; j < addresses.Count; j++)
                 {
                     if (rents[i].address_id == addresses[j].id)
@@ -38,7 +39,7 @@ namespace BizzLayer.Windows
         }
 
         public void rateAddress(int rate, long id)
-        {
+        { 
             dbSetters.rateAddress(rate, id);
         }
     }

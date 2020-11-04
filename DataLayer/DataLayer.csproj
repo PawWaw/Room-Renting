@@ -57,6 +57,7 @@
     <Compile Include="Classes\DbSetters.cs" />
     <Compile Include="Classes\FlatSearchCriteria.cs" />
     <Compile Include="Classes\WSAddresses.cs" />
+    <Compile Include="Classes\WSCalendar.cs" />
     <Compile Include="Classes\WSRents.cs" />
     <Compile Include="Database.Context.cs">
       <AutoGen>True</AutoGen>
