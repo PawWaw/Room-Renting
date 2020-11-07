@@ -54,7 +54,8 @@ namespace Room_Renting.Forms
             }
             else
             {
-                MessageBox.Show("Wrong data!", "Error", MessageBoxButton.OK);
+                Message msg = new Message("Wrong data!");
+                msg.ShowDialog();
             }
         }
 

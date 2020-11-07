@@ -76,10 +76,11 @@
             <DataGrid x:Name="DataGridBox" ItemsSource="{Binding Path=rents}" HorizontalAlignment="Left" Height="505" Margin="61,171,0,0" VerticalAlignment="Top" Width="900" Background="#F5FBEF" Grid.RowSpan="2" IsReadOnly="True" CanUserAddRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Address" Binding="{Binding Path=address}" Width="250"/>
-                    <DataGridTextColumn Header="Description" Binding="{Binding Path=description}" Width="380"/>
+                    <DataGridTextColumn Header="Description" Binding="{Binding Path=description}" Width="300"/>
                     <DataGridTextColumn Header="Price" Binding="{Binding Path=price}" Width="100"/>
                     <DataGridTextColumn Header="Rating" Binding="{Binding Path=rating}" Width="80"/>
-                    <DataGridTextColumn Header="Rates" Binding="{Binding Path=rates}" Width="80"/>
+                    <DataGridTextColumn Header="Rates" Binding="{Binding Path=rateCount}" Width="80"/>
+                    <DataGridTextColumn Header="Beds" Binding="{Binding Path=bed_count}" Width="80"/>
                 </DataGrid.Columns>
             </DataGrid>
             <Button Name="SearchButton" Margin="0,93,138,174" HorizontalAlignment="Right" Height="Auto" Width="87"
@@ -157,12 +158,6 @@
                             <TextBlock Text="Home" VerticalAlignment="Center" Margin="10 10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem x:Name="ItemCreate" Height="60" Background="#F5FBEF" Cursor="Hand" Selected="ItemCreate_Selected">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Pencil" Height="25" Width="25" Margin="10"/>
-                            <TextBlock Text="Find room" VerticalAlignment="Center" Margin="10 10"/>
-                        </StackPanel>
-                    </ListViewItem>
                     <ListViewItem x:Name="ItemCalendar" Height="60" Background="#F5FBEF" Cursor="Hand" Selected="ItemCalendar_Selected">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Calendar" Height="25" Width="25" Margin="10"/>
@@ -179,6 +174,12 @@
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Vote" Height="25" Width="25" Margin="10"/>
                             <TextBlock Text="Reviews" VerticalAlignment="Center"  Margin="10 10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemCreate" Height="60" Background="#F5FBEF" Cursor="Hand" Selected="Export_Selected">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Export" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="Export history" VerticalAlignment="Center" Margin="10 10"/>
                         </StackPanel>
                     </ListViewItem>
                 </ListView>

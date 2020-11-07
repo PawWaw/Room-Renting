@@ -41,6 +41,7 @@
           <Property Name="pending" Type="bit" Nullable="false" />
           <Property Name="isRated" Type="bit" Nullable="false" />
           <Property Name="rate" Type="int" />
+          <Property Name="rentBeds" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Reviews">
           <Key>
@@ -253,6 +254,7 @@
           <Property Name="pending" Type="Boolean" Nullable="false" />
           <Property Name="isRated" Type="Boolean" Nullable="false" />
           <Property Name="rate" Type="Int32" />
+          <Property Name="rentBeds" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Addresses" Relationship="Self.FK_Rents_Addresses" FromRole="Rents" ToRole="Addresses" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Rents_Users" FromRole="Rents" ToRole="Users" />
         </EntityType>
@@ -473,6 +475,7 @@
                 <ScalarProperty Name="pending" ColumnName="pending" />
                 <ScalarProperty Name="isRated" ColumnName="isRated" />
                 <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="rentBeds" ColumnName="rentBeds" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -26,7 +26,8 @@ namespace Room_Renting.Forms
         {
             if (UsernameTB.Text.Equals("") || PasswordTB.Password.Equals(""))
             {
-                MessageBox.Show("Missing data", "Error", MessageBoxButton.OK);
+                Message msg = new Message("Missing data");
+                msg.ShowDialog();
                 return;
             }
 
@@ -51,7 +52,8 @@ namespace Room_Renting.Forms
                 }
                 else
                 {
-                    MessageBox.Show("Wrong username or password", "Error", MessageBoxButton.OK);
+                    Message msg = new Message("Wrong username or password");
+                    msg.ShowDialog();
                 }
             }
         }

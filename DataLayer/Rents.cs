@@ -23,6 +23,7 @@ namespace DataLayer
         public bool pending { get; set; }
         public bool isRated { get; set; }
         public Nullable<int> rate { get; set; }
+        public int rentBeds { get; set; }
     
         public virtual Addresses Addresses { get; set; }
         public virtual Users Users { get; set; }

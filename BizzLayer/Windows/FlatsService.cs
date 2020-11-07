@@ -31,8 +31,23 @@ namespace BizzLayer.Windows
                 temp.address = addresses[j].country + ", " + addresses[j].city + ", " + addresses[j].street + " " + addresses[j].house;
                 temp.bed_count = userAddresses[j].bed_count;
                 temp.price = userAddresses[j].price;
-                temp.rating = userAddresses[j].rate;
-                temp.rateCount = userAddresses[j].rateCount;
+                if (userAddresses[j].rate == null)
+                {
+                    temp.rating = 0;
+                }
+                else
+                {
+                    temp.rating = userAddresses[j].rate;
+                }
+                if (userAddresses[j].rateCount == null)
+                {
+                    temp.rateCount = 0;
+                }
+                else
+                {
+                    temp.rateCount = userAddresses[j].rateCount;
+                }
+                
                 ws.Add(temp);
             }
 

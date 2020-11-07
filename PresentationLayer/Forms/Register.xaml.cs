@@ -22,7 +22,8 @@ namespace Room_Renting.Forms
         {
             if (NameTextbox.Text.Equals("") || SurnameTextbox.Text.Equals("") || PhoneTextbox.Text.Equals("") || UsernameTextbox.Text.Equals("") || PasswordTextbox.Password.Equals("") || MailTextbox.Text.Equals(""))
             {
-                MessageBox.Show("Missing data", "Error", MessageBoxButton.OK);
+                Message msg = new Message("Missing data");
+                msg.ShowDialog();
                 return;
             }
 
@@ -69,7 +70,8 @@ namespace Room_Renting.Forms
         {
             if (!user.email_addr.Contains("@"))
             {
-                MessageBox.Show("Wrong email address!", "Error!", MessageBoxButton.OK);
+                Message msg = new Message("Wrong email address!");
+                msg.ShowDialog();
                 return false;
             }
             return true;
@@ -79,7 +81,8 @@ namespace Room_Renting.Forms
         {
             if (personalData.phone_number.ToString().Length != 9)
             {
-                MessageBox.Show("Wrong phone number length!", "Error!", MessageBoxButton.OK);
+                Message msg = new Message("Wrong phone number length!");
+                msg.ShowDialog();
                 return false;
             }
             return true;

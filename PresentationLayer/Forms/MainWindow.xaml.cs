@@ -1,11 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.IO;
+using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using BizzLayer;
 using BizzLayer.Windows;
-using DataLayer.Classes;
 using MaterialDesignThemes.Wpf;
+using Microsoft.Win32;
 using Room_Renting.Forms;
 using Room_Renting.WS;
 
@@ -17,7 +22,8 @@ namespace Room_Renting
     public partial class MainWindow : Window
     {
         private FlatsService flatsService = new FlatsService();
-        private List<WSAddresses> rents = new List<WSAddresses>();
+        private ExportService exportService = new ExportService();
+        private List<DataLayer.Classes.WSAddresses> rents = new List<DataLayer.Classes.WSAddresses>();
 
         public MainWindow()
         {
@@ -47,7 +53,8 @@ namespace Room_Renting
 
         private void AboutButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Dąbrowa Górnicza, 2020\n Paweł Wawszczyk", "About", MessageBoxButton.OK);
+            Message msg = new Message("Dąbrowa Górnicza, 2020\n Paweł Wawszczyk");
+            msg.ShowDialog();
         }
 
         private void QuitButton_Click(object sender, RoutedEventArgs e)
@@ -73,12 +80,6 @@ namespace Room_Renting
             calendar.ShowDialog();
         }
 
-        private void ItemCreate_Selected(object sender, RoutedEventArgs e)
-        {
-            Create create = new Create();
-            create.ShowDialog();
-        }
-
         private void ItemHome_Selected(object sender, RoutedEventArgs e)
         {
             
@@ -94,13 +95,14 @@ namespace Room_Renting
         {
             LoginService.userId = 0;
             LoginService.user = "";
+            ButtonSignIn.IsEnabled = true;
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             DataGridBox.ClearValue(ItemsControl.ItemsSourceProperty);
             DataGridBox.Items.Clear();
-            FlatSearchCriteria criteria = new FlatSearchCriteria();
+            DataLayer.Classes.FlatSearchCriteria criteria = new DataLayer.Classes.FlatSearchCriteria();
             criteria.startDate = StartDateDP.SelectedDate.GetValueOrDefault();
             criteria.endDate = EndDateDP.SelectedDate.GetValueOrDefault();
             if (!BedCountTB.Text.Equals(""))
@@ -137,7 +139,7 @@ namespace Room_Renting
             LoadGrid(rents);
         }
 
-        private void LoadGrid(List<WSAddresses> rents)
+        private void LoadGrid(List<DataLayer.Classes.WSAddresses> rents)
         {
             for (int i = 0; i < rents.Count; i++)
             {
@@ -155,12 +157,13 @@ namespace Room_Renting
         {
             if (StartDateDP.SelectedDate != null && EndDateDP.SelectedDate != null && DataGridBox.SelectedItem != null)
             {
-                Create create = new Create(rents[DataGridBox.SelectedIndex].address_id, StartDateDP.SelectedDate, EndDateDP.SelectedDate);
+                Create create = new Create(rents[DataGridBox.SelectedIndex].address_id, StartDateDP.SelectedDate, EndDateDP.SelectedDate, rents[DataGridBox.SelectedIndex].bed_count);
                 create.ShowDialog();
             }
             else
             {
-                MessageBox.Show("Choose start and end date", "Error", MessageBoxButton.OK);
+                Message msg = new Message("Choose start and end date");
+                msg.ShowDialog();
             }
         }
 
@@ -169,6 +172,16 @@ namespace Room_Renting
             if (LoginService.userId != 0)
             {
                 RentButton.IsEnabled = true;
+                ButtonSignIn.IsEnabled = false;
+            }
+        }
+
+        private void Export_Selected(object sender, RoutedEventArgs e)
+        {
+            if (!exportService.exportToCsv())
+            {
+                Message msg = new Message("No data to export!");
+                msg.ShowDialog();
             }
         }
     }

@@ -25,6 +25,7 @@ namespace Room_Renting.Forms
         private long address_id;
         private DateTime? startDate;
         private DateTime? endDate;
+        private int beds;
         CreateService createService = new CreateService();
 
         public Create()
@@ -32,12 +33,13 @@ namespace Room_Renting.Forms
             InitializeComponent();
         }
 
-        public Create(long address_id, DateTime? startDate, DateTime? endDate)
+        public Create(long address_id, DateTime? startDate, DateTime? endDate, int beds)
         {
             InitializeComponent();
             this.address_id = address_id;
             this.startDate = startDate;
             this.endDate = endDate;
+            this.beds = beds;
         }
 
         private void RentButton_Click(object sender, RoutedEventArgs e)
@@ -47,21 +49,30 @@ namespace Room_Renting.Forms
                 int parsed;
                 if (int.TryParse(BedCountTB.Text, out parsed))
                 {
-                    Rents rent = new Rents();
-                    rent.startDate = (DateTime)this.startDate;
-                    rent.endDate = (DateTime)this.endDate;
-                    rent.is_actual = true;
-                    rent.pending = false;
-                    rent.isRated = false;
-                    rent.user_id = LoginService.userId;
-                    rent.address_id = address_id;
+                    if (parsed > beds || parsed < 0)
+                    {
+                        Message msg = new Message("Wrong bed number to reservation");
+                        msg.ShowDialog();
+                    }
+                    else
+                    {
+                        Rents rent = new Rents();
+                        rent.startDate = (DateTime)this.startDate;
+                        rent.endDate = (DateTime)this.endDate;
+                        rent.is_actual = true;
+                        rent.pending = false;
+                        rent.isRated = false;
+                        rent.user_id = LoginService.userId;
+                        rent.address_id = address_id;
 
-                    createService.addRent(rent);
-                    this.Close();
+                        createService.addRent(rent);
+                        this.Close();
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Wrong bed number to reservation", "Error", MessageBoxButton.OK);
+                    Message msg = new Message("Wrong bed number to reservation");
+                    msg.ShowDialog();
                 }
             }
         }
