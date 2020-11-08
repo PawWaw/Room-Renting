@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Room_Renting.Forms"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="Room_Renting.Forms.Create"
         mc:Ignorable="d"
-        Title="Create" Height="270" Width="320" Background="#F5FBEF">
+        Title="Create" Height="270" Width="320" Background="#F5FBEF" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,2,0" Height="239" VerticalAlignment="Top">
         <TextBox x:Name="BedCountTB" Margin="59,99,51,98" Foreground="#2F9C95"
             materialDesign:HintAssist.Hint="Beds count"

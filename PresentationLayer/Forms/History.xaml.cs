@@ -28,6 +28,12 @@ namespace Room_Renting.Forms
 
                 LoadGrid(rents);
             }
+            else
+            {
+                Message msg = new Message("You are not logged in.\nPlease log in to use this panel.");
+                msg.ShowDialog();
+                this.Close();
+            }
         }
 
         private void LoadGrid(List<WS.WSRents> rents)

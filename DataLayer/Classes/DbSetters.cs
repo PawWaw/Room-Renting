@@ -8,6 +8,27 @@ namespace DataLayer.Classes
 {
     public class DbSetters
     {
+        public long addAddress(Addresses address)
+        {
+            Addresses temp = new Addresses();
+
+            using (var context = new RoomRentEntities())
+            {
+                temp = context.Addresses.Add(address);
+                context.SaveChanges();
+            }
+
+            return temp.id;
+        }
+
+        public void addUserAddress(UserAddresses userAddresses)
+        {
+            using (var context = new RoomRentEntities())
+            {
+                context.UserAddresses.Add(userAddresses);
+                context.SaveChanges();
+            }
+        }
 
         public void isRated(long id, int value)
         {

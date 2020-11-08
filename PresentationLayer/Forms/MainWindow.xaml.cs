@@ -48,7 +48,8 @@ namespace Room_Renting
 
         private void HelpButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Message msg = new Message("Sign in or sign up\n if you don't have your account.\nThen start renting!");
+            msg.ShowDialog();
         }
 
         private void AboutButton_Click(object sender, RoutedEventArgs e)
@@ -82,7 +83,16 @@ namespace Room_Renting
 
         private void ItemHome_Selected(object sender, RoutedEventArgs e)
         {
-            
+            DataGridBox.ClearValue(ItemsControl.ItemsSourceProperty);
+            DataGridBox.Items.Clear();
+            StartDateDP.SelectedDate = null;
+            EndDateDP.SelectedDate = null;
+            KitchenCB.IsChecked = false;
+            AnimalsCB.IsChecked = false;
+            ParkingCB.IsChecked = false;
+            CityTB.Text = "";
+            BedCountTB.Text = "";
+            PriceTB.Text = "";
         }
 
         private void ItemHistory_Selected(object sender, RoutedEventArgs e)
@@ -183,6 +193,12 @@ namespace Room_Renting
                 Message msg = new Message("No data to export!");
                 msg.ShowDialog();
             }
+        }
+
+        private void AddRoom_Selected(object sender, RoutedEventArgs e)
+        {
+            AddRoom addRoom = new AddRoom();
+            addRoom.ShowDialog();
         }
     }
 }

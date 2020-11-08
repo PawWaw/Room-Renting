@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Room_Renting.Forms"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="Room_Renting.Forms.Reviews"
         mc:Ignorable="d"
-        Title="Reviews" Height="330" Width="338" Background="#F5FBEF" ResizeMode="NoResize">
+        Title="Reviews" Height="330" Width="338" Background="#F5FBEF" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid Margin="0,0,2,0">
         <materialDesign:Card Background="#F5FBEF" Padding="15, 5, 15, 5" Margin="40,29,30,229" HorizontalAlignment="Center" Width="230">
             <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}" Margin="4, 0, 0, 0" HorizontalAlignment="Center"><Run Text="Rate your rent!"/></TextBlock>

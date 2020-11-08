@@ -63,5 +63,15 @@ namespace Room_Renting.Forms
         {
             this.Close();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (LoginService.userId == 0)
+            {
+                Message msg = new Message("You are not logged in.\nPlease log in to use this panel.");
+                msg.ShowDialog();
+                this.Close();
+            }
+        }
     }
 }

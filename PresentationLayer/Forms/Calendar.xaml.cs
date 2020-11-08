@@ -21,30 +21,28 @@ namespace Room_Renting.Forms
         public Calendar()
         {
             InitializeComponent();
+            if (!LoginService.isRenter)
+            {
+                RenterToggle.IsEnabled = false;
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             if (LoginService.userId == 0)
             {
-                this.IsEnabled = false;
+                Message msg = new Message("You are not logged in.\nPlease log in to use this panel.");
+                msg.ShowDialog();
+                this.Close();
             }
 
-            if (LoginService.isRenter)
+            if (!LoginService.isRenter)
             {
-                RenterToggle.IsEnabled = true;
-                RenterCombobox.IsEnabled = false;
-
-                List<Addresses> userAddresses = calendarService.getUserAddresses(LoginService.userId);
-                rents = calendarService.getUserFutureRents(LoginService.userId);
-
-                for (int i = 0; i < userAddresses.Count; i++)
-                {
-                    RenterCombobox.Items.Add(userAddresses[i].street);
-                    DateTime date = new DateTime(2020, 10, 10);
-                }
-
-                loadLandlordColumns(rents);
+                loadTenantColumns();
+            }
+            else
+            {
+                loadLandlordColumns();
             }
         }
 
@@ -63,7 +61,7 @@ namespace Room_Renting.Forms
             if (RenterToggle.IsChecked == true)
             {
                 RenterCombobox.IsEnabled = true;
-                loadLandlordColumns(rents);
+                loadLandlordColumns();
             }
             else
             {
@@ -72,8 +70,20 @@ namespace Room_Renting.Forms
             }
         }
 
-        private void loadLandlordColumns(List<Rents> rents)
+        private void loadLandlordColumns()
         {
+            RenterCombobox.IsEnabled = true;
+
+            List<Addresses> userAddresses = calendarService.getUserAddresses(LoginService.userId);
+            List<long> addressIds = userAddresses.Select(c => c.id).ToList();
+            rents = calendarService.getRenterFutureRents(addressIds);
+
+            for (int i = 0; i < userAddresses.Count; i++)
+            {
+                RenterCombobox.Items.Add(userAddresses[i].street);
+                DateTime date = new DateTime(2020, 10, 10);
+            }
+
             List<WSCalendar> calendarList = new List<WSCalendar>();
             for (int i = 0; i < rents.Count; i++)
             {
@@ -89,7 +99,22 @@ namespace Room_Renting.Forms
 
         private void loadTenantColumns()
         {
+            RenterCombobox.IsEnabled = false;
 
+            rents = calendarService.getUserFutureRents(LoginService.userId);
+            List<WSCalendar> calendarList = new List<WSCalendar>();
+
+            for (int i = 0; i < rents.Count; i++)
+            {
+                WSCalendar temp = new WSCalendar();
+                temp.startDate = rents[i].startDate.ToShortDateString();
+                temp.endDate = rents[i].endDate.ToShortDateString();
+                temp.address = calendarService.getAddress(rents[i].address_id);
+                temp.client = calendarService.getPerson(rents[i].user_id);
+                calendarList.Add(temp);
+            }
+
+            LoadGrid(calendarList);
         }
     }
 }

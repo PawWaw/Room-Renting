@@ -30,6 +30,19 @@ namespace DataLayer
             return personal;
         }
 
+        public List<Rents> getRenterFutureRents(List<long> ids)
+        {
+            List<Rents> rents = new List<Rents>();
+            using (var context = new RoomRentEntities())
+            {
+                rents = context.Rents
+                    .Where(c => ids.Contains(c.address_id))
+                    .ToList();
+            }
+
+            return rents;
+        }
+
         public Users getUserByHash(string username, string hash)
         {
             Users user = new Users();
@@ -133,7 +146,7 @@ namespace DataLayer
             using (var context = new RoomRentEntities())
             {
                 rents = context.Rents
-                    .Where(c => (c.startDate < criteria.startDate && c.endDate > criteria.startDate) || (c.startDate < criteria.endDate && c.endDate > criteria.endDate) || (c.startDate > criteria.startDate && c.endDate < criteria.endDate))
+                    .Where(c => (c.startDate <= criteria.startDate && c.endDate >= criteria.startDate) || (c.startDate <= criteria.endDate && c.endDate >= criteria.endDate) || (c.startDate >= criteria.startDate && c.endDate <= criteria.endDate))
                     .Select(c => c.address_id)
                     .ToList();
             }

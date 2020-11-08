@@ -28,5 +28,10 @@ namespace BizzLayer.Windows
         {
             return dbGetters.getPerson(userId);
         }
+
+        public List<Rents> getRenterFutureRents(List<long> ids)
+        {
+            return dbGetters.getRenterFutureRents(ids);
+        }
     }
 }

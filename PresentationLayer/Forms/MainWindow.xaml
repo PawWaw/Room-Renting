@@ -164,16 +164,22 @@
                             <TextBlock Text="My calendar" VerticalAlignment="Center"  Margin="10 10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem x:Name="ItemHistory" Height="60" Background="#F5FBEF" Cursor="Hand" Selected="ItemHistory_Selected">
+                    <ListViewItem x:Name="AddRoom" Height="60" Background="#F5FBEF" Cursor="Hand" Selected="AddRoom_Selected">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="History" Height="25" Width="25" Margin="10"/>
-                            <TextBlock Text="Reservation history" VerticalAlignment="Center"  Margin="10 10"/>
+                            <materialDesign:PackIcon Kind="AddLocation" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="Add renting place" VerticalAlignment="Center"  Margin="10 10"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem x:Name="ItemReviews" Height="60" Background="#F5FBEF" Cursor="Hand" Selected="ItemReviews_Selected">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Vote" Height="25" Width="25" Margin="10"/>
                             <TextBlock Text="Reviews" VerticalAlignment="Center"  Margin="10 10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemHistory" Height="60" Background="#F5FBEF" Cursor="Hand" Selected="ItemHistory_Selected">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="History" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="Reservation history" VerticalAlignment="Center"  Margin="10 10"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem x:Name="ItemCreate" Height="60" Background="#F5FBEF" Cursor="Hand" Selected="Export_Selected">
