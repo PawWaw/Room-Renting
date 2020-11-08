@@ -11,11 +11,6 @@ namespace BizzLayer
 
         DbGetters dbGetters = new DbGetters();
 
-        public PersonalData findPersonalData(int phoneNumber)
-        {
-            return dbGetters.getPersonalDataByPhone(phoneNumber);
-        }
-
         public string getSalt(string username)
         {
             return dbGetters.getSalt(username);
@@ -24,6 +19,11 @@ namespace BizzLayer
         public Users getUserByHash(string user, string hash)
         {
             return dbGetters.getUserByHash(user, hash);
+        }
+
+        public PersonalData getPersonalData(long personal_id)
+        {
+            return dbGetters.getPersonalDataById(personal_id);
         }
     }
 }

@@ -109,20 +109,6 @@
                 Click="RentButton_Click" IsEnabled="False"/>
         </Grid>
         <Grid Height="60" VerticalAlignment="Top" Background="#0E3B43">
-            <Grid.Effect>
-                <DropShadowEffect BlurRadius="2" ShadowDepth="1" Color="#F5FBEF"/>
-            </Grid.Effect>
-            <StackPanel Orientation="Horizontal" Visibility="Hidden" HorizontalAlignment="Right" Grid.Column="1">
-                <TextBlock Text="Name Surname" VerticalAlignment="Center" FontSize="16"/>
-                <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10">
-                    <StackPanel Width="150" Background="#2F9C95">
-                        <Button Content="My Account" Foreground="#F5FBEF" Cursor="Hand"/>
-                        <Button Content="Help" Foreground="#F5FBEF" Cursor="Hand"/>
-                        <Separator Background="#F5FBEF"/>
-                        <Button Content="Logout" Foreground="#F5FBEF" Cursor="Hand"/>
-                    </StackPanel>
-                </materialDesign:PopupBox>
-            </StackPanel>
             <StackPanel Orientation="Horizontal" Visibility="Visible" HorizontalAlignment="Right" Grid.Column="1">
                 <Button Style="{StaticResource TabButton}" x:Name="ButtonSignIn" Height="40" Width="40" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#0E3B43" BorderBrush="{x:Null}" Foreground="#F5FBEF" Cursor="Hand" Click="ButtonSignIn_Click">
                     <materialDesign:PackIcon Kind="Login" Width="30" Height="30"/>
@@ -132,6 +118,7 @@
                 </Button>
                 <materialDesign:PopupBox Background="#2F9C95" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10">
                     <StackPanel Width="150" Background="#2F9C95">
+                        <Button x:Name="AccountButton" Content="Edit account" Foreground="#F5FBEF" Cursor="Hand" Click="Account_Click"/>
                         <Button x:Name="HelpButton" Content="Help" Foreground="#F5FBEF" Cursor="Hand" Click="HelpButton_Click"/>
                         <Button x:Name="AboutButton" Content="About" Foreground="#F5FBEF" Cursor="Hand" Click="AboutButton_Click"/>
                         <Button x:Name="LogoutButton" Content="Log Out" Foreground="#F5FBEF" Cursor="Hand" Click="LogoutButton_Click"/>
@@ -139,7 +126,7 @@
                     </StackPanel>
                 </materialDesign:PopupBox>
             </StackPanel>
-            <Label x:Name="UserLabel" Content="" HorizontalAlignment="Left" Margin="78,10,0,0" VerticalAlignment="Top" Height="40" Width="272"/>
+            <Label x:Name="UserLabel" Content="" HorizontalAlignment="Left" FontSize="22" Margin="78,10,0,0" VerticalAlignment="Top" Height="40" Width="272" Foreground="#F5FBEF"/>
         </Grid>
         <Grid x:Name="GridMenu" Width="60" HorizontalAlignment="Left" Background="#F5FBEF">
             <StackPanel>

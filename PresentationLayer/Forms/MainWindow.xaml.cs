@@ -65,7 +65,7 @@ namespace Room_Renting
 
         private void ButtonSignIn_Click(object sender, RoutedEventArgs e)
         {
-            Login login = new Login();
+            Login login = new Login("SignIn");
             login.ShowDialog();
         }
 
@@ -183,6 +183,7 @@ namespace Room_Renting
             {
                 RentButton.IsEnabled = true;
                 ButtonSignIn.IsEnabled = false;
+                UserLabel.Content = LoginService.user;
             }
         }
 
@@ -199,6 +200,12 @@ namespace Room_Renting
         {
             AddRoom addRoom = new AddRoom();
             addRoom.ShowDialog();
+        }
+
+        private void Account_Click(object sender, RoutedEventArgs e)
+        {
+            Login login = new Login("Edit");
+            login.ShowDialog();
         }
     }
 }

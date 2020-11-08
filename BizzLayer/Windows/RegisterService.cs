@@ -1,4 +1,5 @@
 ﻿using DataLayer;
+using DataLayer.Classes;
 using System;
 
 namespace BizzLayer
@@ -6,56 +7,26 @@ namespace BizzLayer
     public class RegisterService
     {
         DbGetters dbGetters = new DbGetters();
+        DbSetters dbSetters = new DbSetters();
+
+        public void updateUser(Users user)
+        {
+            dbSetters.updateUser(user);
+        }
+
+        public void updatePersonalData(PersonalData personalData)
+        {
+            dbSetters.updatePersonalData(personalData);
+        }
 
         public void createUser(Users user)
         {
-            using (var context = new RoomRentEntities())
-            {
-                Users newUser = new Users
-                {
-                    personal_id = user.personal_id,
-                    username = user.username,
-                    password = user.password,
-                    email_addr = user.email_addr,
-                    acc_type = user.acc_type,
-                    is_active = true,
-                    is_banned = false,
-                    verified = true,
-                    create_date = DateTime.Now,
-                    salt = user.salt
-                };
-                context.Users.Add(newUser);
-                context.SaveChanges();
-            };
+            dbSetters.createUser(user);
         }
 
-        public long createPersonalData(PersonalData data)
+        public long createPersonalData(PersonalData personalData)
         {
-            using (var context = new RoomRentEntities())
-            {
-                PersonalData personalData = new PersonalData
-                {
-                    name = data.name,
-                    surname = data.surname,
-                    phone_number = data.phone_number,
-                };
-                PersonalData returned = context.PersonalData.Add(personalData);
-                context.SaveChanges();                
-            };
-
-            return getNewDataId(data.phone_number);
-        }
-
-        private long getNewDataId(long phoneNumber)
-        {
-            PersonalData data = dbGetters.getPersonalDataByPhone(phoneNumber);
-
-            if (data != null)
-            {
-                return data.id;
-            }
-
-            return 0;
+            return dbSetters.createPersonalData(personalData);
         }
     }
 }

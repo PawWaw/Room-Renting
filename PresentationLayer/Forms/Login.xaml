@@ -10,7 +10,7 @@
     <Grid Background="#F5FBEF">
         <StackPanel>
             <materialDesign:Card Background="#F5FBEF" Padding="15, 5, 15, 5" Margin="30, 15, 30, 10" HorizontalAlignment="Center" Height="35">
-                <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}" Margin="4, 0, 0, 0">Login to your account!</TextBlock>
+                <TextBlock x:Name="TextLabel" Style="{StaticResource MaterialDesignCaptionTextBlock}" Margin="4, 0, 0, 0">Login to your account!</TextBlock>
             </materialDesign:Card>
             <TextBox x:Name="UsernameTB" Margin="30, 10, 30, 10" 
                     materialDesign:HintAssist.Hint="Username"

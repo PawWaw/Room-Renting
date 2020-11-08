@@ -11,10 +11,17 @@ namespace Room_Renting.Forms
     {
         LoginService loginService = new LoginService();
         Hashing hashing = new Hashing();
+        string mode = "";
 
-        public Login()
+        public Login(string mode)
         {
             InitializeComponent();
+
+            if (mode.Equals("Edit"))
+            {
+                TextLabel.Text = "Authenticate to modify account";
+                this.mode = mode;
+            }
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -41,14 +48,24 @@ namespace Room_Renting.Forms
 
                 if (user != null)
                 {
-                    LoginService.userId = user.id;
-                    LoginService.user = user.username;
-                    if (user.acc_type.Contains("R"))
+                    if (this.mode.Equals("Edit"))
                     {
-                        LoginService.isRenter = true;
+                        this.Close();
+                        PersonalData data = loginService.getPersonalData(user.personal_id);
+                        Register register = new Register(user, data);
+                        register.ShowDialog();
                     }
+                    else
+                    {
+                        LoginService.userId = user.id;
+                        LoginService.user = user.username;
+                        if (user.acc_type.Contains("R"))
+                        {
+                            LoginService.isRenter = true;
+                        }
 
-                    this.Close();
+                        this.Close();
+                    }
                 }
                 else
                 {

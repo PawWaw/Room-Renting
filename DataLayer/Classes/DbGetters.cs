@@ -7,13 +7,15 @@ namespace DataLayer
 {
     public class DbGetters
     {
-        public void getPersonalDataById(int id)
+        public PersonalData getPersonalDataById(long id)
         {
             using (var context = new RoomRentEntities())
             {
-                var personal = context.PersonalData
+                PersonalData personal = context.PersonalData
                     .Where(c => c.id == id)
                     .FirstOrDefault();
+
+                return personal;
             }
         }
 

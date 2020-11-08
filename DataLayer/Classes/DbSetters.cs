@@ -8,6 +8,8 @@ namespace DataLayer.Classes
 {
     public class DbSetters
     {
+        DbGetters dbGetters = new DbGetters();
+
         public long addAddress(Addresses address)
         {
             Addresses temp = new Addresses();
@@ -19,6 +21,39 @@ namespace DataLayer.Classes
             }
 
             return temp.id;
+        }
+
+        public void updateUser(Users user)
+        {
+            using (var context = new RoomRentEntities())
+            {
+                var temp = context.Users
+                    .Where(c => c.username == user.username)
+                    .FirstOrDefault();
+                if (temp != null)
+                {
+                    temp.email_addr = user.email_addr;
+                    temp.acc_type = user.acc_type;
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public void updatePersonalData(PersonalData personalData)
+        {
+            using (var context = new RoomRentEntities())
+            {
+                var temp = context.PersonalData
+                    .Where(c => c.id == personalData.id)
+                    .FirstOrDefault();
+                if (temp != null)
+                {
+                    temp.phone_number = personalData.phone_number;
+                    temp.name = personalData.name;
+                    temp.surname = personalData.surname;
+                    context.SaveChanges();
+                }
+            }
         }
 
         public void addUserAddress(UserAddresses userAddresses)
@@ -79,6 +114,57 @@ namespace DataLayer.Classes
                     context.SaveChanges();
                 }
             }
+        }
+
+        public void createUser(Users user)
+        {
+            using (var context = new RoomRentEntities())
+            {
+                Users newUser = new Users
+                {
+                    personal_id = user.personal_id,
+                    username = user.username,
+                    password = user.password,
+                    email_addr = user.email_addr,
+                    acc_type = user.acc_type,
+                    is_active = true,
+                    is_banned = false,
+                    verified = true,
+                    create_date = DateTime.Now,
+                    salt = user.salt
+                };
+                context.Users.Add(newUser);
+                context.SaveChanges();
+            };
+        }
+
+        public long createPersonalData(PersonalData data)
+        {
+            using (var context = new RoomRentEntities())
+            {
+                PersonalData personalData = new PersonalData
+                {
+                    name = data.name,
+                    surname = data.surname,
+                    phone_number = data.phone_number,
+                };
+                PersonalData returned = context.PersonalData.Add(personalData);
+                context.SaveChanges();
+            };
+
+            return getNewDataId(data.phone_number);
+        }
+
+        private long getNewDataId(long phoneNumber)
+        {
+            PersonalData data = dbGetters.getPersonalDataByPhone(phoneNumber);
+
+            if (data != null)
+            {
+                return data.id;
+            }
+
+            return 0;
         }
     }
 }
