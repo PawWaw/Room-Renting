@@ -39,6 +39,22 @@ namespace DataLayer.Classes
             }
         }
 
+        public void deleteRent(long v)
+        {
+            using (var context = new RoomRentEntities())
+            {
+                var temp = context.Rents
+                    .Where(c => c.id == v)
+                    .FirstOrDefault();
+
+                if (temp != null)
+                {
+                    context.Rents.Remove(temp);
+                    context.SaveChanges();
+                }
+            }
+        }
+
         public void updatePersonalData(PersonalData personalData)
         {
             using (var context = new RoomRentEntities())

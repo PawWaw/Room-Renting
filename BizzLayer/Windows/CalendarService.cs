@@ -1,4 +1,5 @@
 ﻿using DataLayer;
+using DataLayer.Classes;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,6 +9,7 @@ namespace BizzLayer.Windows
     public class CalendarService
     {
         DbGetters dbGetters = new DbGetters();
+        DbSetters dbSetters = new DbSetters();
 
         public List<Addresses> getUserAddresses(long userId)
         {
@@ -32,6 +34,11 @@ namespace BizzLayer.Windows
         public List<Rents> getRenterFutureRents(List<long> ids)
         {
             return dbGetters.getRenterFutureRents(ids);
+        }
+
+        public void deleteRent(long v)
+        {
+            dbSetters.deleteRent(v);
         }
     }
 }

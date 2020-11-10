@@ -6,19 +6,28 @@
         xmlns:local="clr-namespace:Room_Renting.Forms"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Calendar" Height="450" Width="800" Loaded="Window_Loaded" Background="#F5FBEF" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Calendar" Height="470" Width="800" Loaded="Window_Loaded" Background="#F5FBEF" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Background="#F5FBEF">
-        <ToggleButton x:Name="RenterToggle" Margin="179,16,573,379" Click="RenterToggle_Click" IsEnabled="False"/>
-        <Label Content="Choose my flats" HorizontalAlignment="Left" Margin="229,9,0,0" VerticalAlignment="Top" Width="148" FontSize="14"/>
-        <ComboBox x:Name="RenterCombobox" Margin="355,10,310,383" IsEnabled="False"/>
-        <DataGrid x:Name="DataGridBox" HorizontalAlignment="Left" Height="317" Margin="45,68,0,0" VerticalAlignment="Top" Width="704" Background="#F5FBEF" IsReadOnly="True" CanUserAddRows="False">
+        <ToggleButton x:Name="RenterToggle" Margin="199,6,547,399" Click="RenterToggle_Click" IsEnabled="False" RenderTransformOrigin="0.594,0.77"/>
+        <Label Content="Choose my flats" HorizontalAlignment="Left" Margin="271,10,0,0" VerticalAlignment="Top" Width="130" FontSize="14"/>
+        <ComboBox x:Name="RenterCombobox" Margin="421,10,244,403" IsEnabled="False"/>
+        <DataGrid x:Name="DataGridBox" HorizontalAlignment="Left" Height="296" Margin="45,68,0,0" VerticalAlignment="Top" Width="704" Background="#F5FBEF" IsReadOnly="True" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Address" Binding="{Binding Path=address}" Width="280"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding Path=id}" Width="80"/>
+                <DataGridTextColumn Header="Address" Binding="{Binding Path=address}" Width="230"/>
                 <DataGridTextColumn Header="Client" Binding="{Binding Path=client}" Width="150"/>
                 <DataGridTextColumn Header="Start date" Binding="{Binding Path=startDate}" Width="120"/>
                 <DataGridTextColumn Header="End date" Binding="{Binding Path=endDate}" Width="120"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="My rents/My flats" HorizontalAlignment="Left" Margin="45,10,0,0" VerticalAlignment="Top" Width="117" FontSize="14"/>
+        <Label Content="My rents/My flats" HorizontalAlignment="Left" Margin="45,10,0,0" VerticalAlignment="Top" Width="128" FontSize="14"/>
+        <Button Name="CancelRentButton" Margin="0,369,184,19" HorizontalAlignment="Right" Height="Auto" Width="155"
+                    Content="Cancel reservation" Foreground="#2F9C95"                    
+                    Style="{StaticResource MaterialDesignFlatButton}"
+                    Click="CancelRentButton_Click"/>
+        <Button x:Name="CancelButton_Copy" Margin="649,369,45,19" HorizontalAlignment="Center"
+            Content="Cancel" Foreground="#2F9C95"                    
+            Style="{StaticResource MaterialDesignFlatButton}"
+            Click="CancelButton_Click" Height="Auto" Width="100"/>
     </Grid>
 </Window>

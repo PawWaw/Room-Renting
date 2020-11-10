@@ -8,6 +8,7 @@ namespace DataLayer.Classes
 {
     public class WSCalendar
     {
+        public long id { get; set; }
         public string startDate { get; set; }
         public string endDate { get; set; }
         public string address { get; set; }

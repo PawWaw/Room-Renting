@@ -17,6 +17,7 @@ namespace Room_Renting.Forms
     {
         CalendarService calendarService = new CalendarService();
         List<Rents> rents;
+        public static bool isRemoved = false;
 
         public Calendar()
         {
@@ -88,6 +89,7 @@ namespace Room_Renting.Forms
             for (int i = 0; i < rents.Count; i++)
             {
                 WSCalendar temp = new WSCalendar();
+                temp.id = rents[i].id;
                 temp.startDate = rents[i].startDate.ToShortDateString();
                 temp.endDate = rents[i].endDate.ToShortDateString();
                 temp.address = calendarService.getAddress(rents[i].address_id);
@@ -107,6 +109,7 @@ namespace Room_Renting.Forms
             for (int i = 0; i < rents.Count; i++)
             {
                 WSCalendar temp = new WSCalendar();
+                temp.id = rents[i].id;
                 temp.startDate = rents[i].startDate.ToShortDateString();
                 temp.endDate = rents[i].endDate.ToShortDateString();
                 temp.address = calendarService.getAddress(rents[i].address_id);
@@ -115,6 +118,39 @@ namespace Room_Renting.Forms
             }
 
             LoadGrid(calendarList);
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void CancelRentButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataGridBox.SelectedItem != null)
+            {
+                Warning warn = new Warning("Are you sure?");
+                warn.ShowDialog();
+
+                if (isRemoved)
+                {
+                    WSCalendar temp = (WSCalendar)DataGridBox.SelectedItem;
+                    calendarService.deleteRent(temp.id);
+                }
+            }
+
+            DataGridBox.ClearValue(ItemsControl.ItemsSourceProperty);
+            DataGridBox.Items.Clear();
+            if (RenterToggle.IsChecked == true)
+            {
+                RenterCombobox.IsEnabled = true;
+                loadLandlordColumns();
+            }
+            else
+            {
+                RenterCombobox.IsEnabled = false;
+                loadTenantColumns();
+            }
         }
     }
 }

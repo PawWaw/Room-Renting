@@ -159,7 +159,7 @@
                     </ListViewItem>
                     <ListViewItem x:Name="ItemReviews" Height="60" Background="#F5FBEF" Cursor="Hand" Selected="ItemReviews_Selected">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Vote" Height="25" Width="25" Margin="10"/>
+                            <materialDesign:PackIcon Kind="RateReview" Height="25" Width="25" Margin="10"/>
                             <TextBlock Text="Reviews" VerticalAlignment="Center"  Margin="10 10"/>
                         </StackPanel>
                     </ListViewItem>
